@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    private int _health;    
-    void Start()
+    public delegate void PlayerHealthHandler(float valueNormalized);
+    public event PlayerHealthHandler OnPlayerHealthValueChangedEvent;
+
+    [SerializeField] private int healthDefault = 5;    
+    public int health { get; private set; }
+    public float healthNormalized => (float) health / healthDefault;
+    void Awake()
     {
-        _health = 5;        
-    }
+        health = healthDefault;
+        OnPlayerHealthValueChangedEvent?.Invoke(healthNormalized);
+    }    
 
     public void Hurt(int damage)
     {
-        _health -= damage;
-        Debug.Log("Health: " + _health);
+        health -= damage;
+        OnPlayerHealthValueChangedEvent?.Invoke(healthNormalized);
+        Debug.Log(health);
     }    
 }
