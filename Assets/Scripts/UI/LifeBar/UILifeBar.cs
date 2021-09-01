@@ -8,9 +8,7 @@ public class UILifeBar : MonoBehaviour
     [SerializeField] private PlayerCharacter playerHealth;
 
     private void OnEnable()
-    {
-        progressBar.SetValue(playerHealth.healthNormalized);
-
+    {      
         playerHealth.OnPlayerHealthValueChangedEvent += OnPlayerHealthValueChanged;
     }
     private void OnPlayerHealthValueChanged(float newValueNormalized)

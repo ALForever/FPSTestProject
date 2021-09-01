@@ -10,16 +10,18 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private int healthDefault = 5;    
     public int health { get; private set; }
     public float healthNormalized => (float) health / healthDefault;
-    void Awake()
+    
+
+    private void Awake()
     {
         health = healthDefault;
         OnPlayerHealthValueChangedEvent?.Invoke(healthNormalized);
-    }    
+    }
 
     public void Hurt(int damage)
     {
         health -= damage;
         OnPlayerHealthValueChangedEvent?.Invoke(healthNormalized);
         Debug.Log(health);
-    }    
+    }
 }

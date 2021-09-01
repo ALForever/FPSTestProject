@@ -5,21 +5,28 @@ using UnityEngine;
 public class ReactiveTarget : MonoBehaviour
 {
     public void ReactToHit()
-    {
-        WanderingAI behavior = GetComponent<WanderingAI>();
+    {        
+        Animator enemyAnimator = GetComponentInParent<Animator>();
+        enemyAnimator.StopPlayback();
+
+
+
+
+        WanderingAI behavior = GetComponentInParent<WanderingAI>();        
+
         if (behavior != null)
         {
             behavior.SetAlive(false);
         }
-        if (gameObject.transform.rotation.x == 0)
-        {            
-            StartCoroutine(Die());            
-        }       
+
+        StartCoroutine(Die());        
     }
     private IEnumerator Die()
     {
-        this.transform.Rotate(-25, 0, 0);        
-        yield return new WaitForSeconds(1.5f);
-        Destroy(this.gameObject);        
+        Animator enemyAnimator = GetComponentInParent<Animator>();
+        enemyAnimator.SetTrigger("enemy_death");
+        Animation enemyDeathAnimation = GetComponentInParent<Animation>();        
+        yield return new WaitForSeconds(enemyDeathAnimation.clip.length);
+        Destroy(transform.parent.gameObject);
     }
 }

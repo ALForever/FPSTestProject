@@ -15,7 +15,7 @@ public class WanderingAI : MonoBehaviour
         if (_alive)
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
-            Ray ray = new Ray(transform.position, transform.forward);
+            Ray ray = new Ray(transform.GetChild(0).position, transform.GetChild(0).forward);            
             RaycastHit hit;
             if (Physics.SphereCast(ray, 0.75f, out hit))
             {
@@ -25,12 +25,12 @@ public class WanderingAI : MonoBehaviour
                     if(_fireball == null)
                     {
                         _fireball = Instantiate(firaballPrefab) as GameObject;
-                        _fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-                        _fireball.transform.rotation = transform.rotation;
+                        _fireball.transform.position = transform.GetChild(0).TransformPoint(Vector3.forward * 1.5f);
+                        _fireball.transform.rotation = transform.GetChild(0).rotation;
                     }
                 }
 
-                else if (hit.distance < obstaclRange)
+                else if (hit.distance < obstaclRange && hitObject != _fireball)
                 {
                     float angle = Random.Range(-110, 110);
                     transform.Rotate(0, angle, 0);
