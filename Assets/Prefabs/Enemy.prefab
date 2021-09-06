@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5725068815265571743}
-  - component: {fileID: 627413600479194599}
   - component: {fileID: 3114113516825806604}
   - component: {fileID: 4031014159692092154}
   m_Layer: 0
@@ -34,21 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &627413600479194599
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5725068815265571731}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8145c77a6ee60bd4489332c384fa615a, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &3114113516825806604
 Animator:
   serializedVersion: 3
@@ -80,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a54cd6ad00172a84a92e86d63da5fdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 3
   obstaclRange: 5
   firaballPrefab: {fileID: 7740668189142719411, guid: 1991b8d2c7e6ef24b849edfcd827cc74, type: 3}
 --- !u!1 &6402396944751895124
@@ -191,3 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3beeb168d456548a0552d50cfb416f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDeathAnimation: {fileID: 7400000, guid: 8145c77a6ee60bd4489332c384fa615a, type: 2}

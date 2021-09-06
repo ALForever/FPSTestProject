@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour
 {
+    [SerializeField] private AnimationClip enemyDeathAnimation;
     public void ReactToHit()
-    {        
-        Animator enemyAnimator = GetComponentInParent<Animator>();
-        enemyAnimator.StopPlayback();
-
-
-
-
+    {
         WanderingAI behavior = GetComponentInParent<WanderingAI>();        
 
         if (behavior != null)
@@ -19,14 +14,13 @@ public class ReactiveTarget : MonoBehaviour
             behavior.SetAlive(false);
         }
 
-        StartCoroutine(Die());        
+        StartCoroutine(Die());
     }
     private IEnumerator Die()
     {
         Animator enemyAnimator = GetComponentInParent<Animator>();
-        enemyAnimator.SetTrigger("enemy_death");
-        Animation enemyDeathAnimation = GetComponentInParent<Animation>();        
-        yield return new WaitForSeconds(enemyDeathAnimation.clip.length);
+        enemyAnimator.SetTrigger("enemy_death");        
+        yield return new WaitForSeconds(enemyDeathAnimation.length);
         Destroy(transform.parent.gameObject);
     }
 }
