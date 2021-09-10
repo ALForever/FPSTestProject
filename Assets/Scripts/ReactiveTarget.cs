@@ -7,7 +7,7 @@ public class ReactiveTarget : MonoBehaviour
     [SerializeField] private AnimationClip enemyDeathAnimation;
     public void ReactToHit()
     {
-        WanderingAI behavior = GetComponentInParent<WanderingAI>();        
+        EnemyAI behavior = GetComponentInParent<EnemyAI>();        
 
         if (behavior != null)
         {
