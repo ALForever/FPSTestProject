@@ -17,8 +17,8 @@ public class MouseLook : MonoBehaviour
     public float minimumVert = -45f;
     public float maximumVert = 45f;
 
-    private float rotationX = 0;
-    private float rotationY = 0;
+    private float _rotationX = 0;
+    private float _rotationY = 0;
     void Start()
     {
         Rigidbody body = GetComponent<Rigidbody>();
@@ -44,14 +44,14 @@ public class MouseLook : MonoBehaviour
 
     private void RotationMouseX()
     {
-        rotationY += Input.GetAxis("Mouse X") * sensitivityHor;
-        transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+        _rotationY += Input.GetAxis("Mouse X") * sensitivityHor;
+        transform.localEulerAngles = new Vector3(_rotationX, _rotationY, 0);
     }
 
     private void RotationMouseY()
     {
-        rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
-        rotationX = Mathf.Clamp(rotationX, minimumVert, maximumVert);
-        transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+        _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+        _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
+        transform.localEulerAngles = new Vector3(_rotationX, _rotationY, 0);
     }
 }

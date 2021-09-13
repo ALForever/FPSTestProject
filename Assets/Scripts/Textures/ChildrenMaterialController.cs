@@ -6,13 +6,13 @@ using UnityEngine;
 public class ChildrenMaterialController : MonoBehaviour
 {
     [SerializeField] private Material textureForChildren;
-    private Renderer[] materials;
+    private Renderer[] _materials;
 
 
     private void OnEnable()
     {
-        materials = GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < materials.Length; i++)
-            materials[i].material = textureForChildren;
+        _materials = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < _materials.Length; i++)
+            _materials[i].material = textureForChildren;
     }
 }

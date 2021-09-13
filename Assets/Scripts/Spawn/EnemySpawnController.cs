@@ -11,18 +11,18 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField] private int poolCount = 3;
     [SerializeField] private bool autoExpand = false;
 
-    private ObjectPoolMono<EnemyAI> enemyPool;
-    private CheckWallsOnPoint innerWalls;
-    private SpawnArea currentSpawnArea;
+    private ObjectPoolMono<EnemyAI> _enemyPool;
+    private CheckWallsOnPoint _innerWalls;
+    private SpawnArea _currentSpawnArea;
 
     private void Start()
     {
-        enemyPool = new ObjectPoolMono<EnemyAI>(enemyPrefab, poolCount, transform, true);
-        enemyPool.autoExpand = autoExpand;
-        innerWalls = new CheckWallsOnPoint(parentWall);
-        currentSpawnArea = new SpawnArea(floorBounds);
+        _enemyPool = new ObjectPoolMono<EnemyAI>(enemyPrefab, poolCount, transform, true);
+        _enemyPool.autoExpand = autoExpand;
+        _innerWalls = new CheckWallsOnPoint(parentWall);
+        _currentSpawnArea = new SpawnArea(floorBounds);
 
-        foreach (EnemyAI enemy in enemyPool.GetAllActiveElemets())
+        foreach (EnemyAI enemy in _enemyPool.GetAllActiveElemets())
         {
             enemy.transform.position = GetCorrectSpawnPoint();
         }        
@@ -32,9 +32,9 @@ public class EnemySpawnController : MonoBehaviour
         Vector3 correctSpawnPoint;
         do
         {
-            correctSpawnPoint = currentSpawnArea.GetRandomSpawnPoint();
+            correctSpawnPoint = _currentSpawnArea.GetRandomSpawnPoint();
         }
-        while (innerWalls.DoesWallContainPoint(correctSpawnPoint));
+        while (_innerWalls.DoesWallContainPoint(correctSpawnPoint));
         return correctSpawnPoint;
     }
 }

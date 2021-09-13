@@ -6,16 +6,16 @@ public class FPSInput : MonoBehaviour
 {
     public float speed = 6.0f;
     public float gravity = -9.8f;
-    private CharacterController charController;
+    private CharacterController _charController;
 
     private void Start()
     {
-        charController = GetComponent<CharacterController>();
+        _charController = GetComponent<CharacterController>();
     }
 
     void Update()
     {        
-        charController.Move(InputedMovementVector(this.speed, this.gravity));
+        _charController.Move(InputedMovementVector(this.speed, this.gravity));
     }
     private Vector3 InputedMovementVector(float speed, float gravity)
     {

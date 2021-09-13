@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class SpawnArea
 {
-    private float XMaxBound;
-    private float XMinBound;
-    private float ZMaxBound;
-    private float ZMinBound;
+    private float _XMaxBound;
+    private float _XMinBound;
+    private float _ZMaxBound;
+    private float _ZMinBound;
 
-    private float xRandomSpawnPoint { get; set; }
-    private float zRandomSpawnPoint { get; set; }
+    private float _xRandomSpawnPoint { get; set; }
+    private float _zRandomSpawnPoint { get; set; }
 
     public SpawnArea(Collider floorBounds)
     {
-        XMaxBound = floorBounds.bounds.max.x;
-        XMinBound = floorBounds.bounds.min.x;
-        ZMaxBound = floorBounds.bounds.max.z;
-        ZMinBound = floorBounds.bounds.min.z;
+        _XMaxBound = floorBounds.bounds.max.x;
+        _XMinBound = floorBounds.bounds.min.x;
+        _ZMaxBound = floorBounds.bounds.max.z;
+        _ZMinBound = floorBounds.bounds.min.z;
     }
     
     public Vector3 GetRandomSpawnPoint()
     {
-        xRandomSpawnPoint = Random.Range(XMinBound, XMaxBound);
-        zRandomSpawnPoint = Random.Range(ZMinBound, ZMaxBound);
-        return new Vector3(xRandomSpawnPoint, 0, zRandomSpawnPoint);
+        _xRandomSpawnPoint = Random.Range(_XMinBound, _XMaxBound);
+        _zRandomSpawnPoint = Random.Range(_ZMinBound, _ZMaxBound);
+        return new Vector3(_xRandomSpawnPoint, 0, _zRandomSpawnPoint);
     }
 
     public void UpdateAreaBounds(Collider floorBounds)
     {
-        XMaxBound = floorBounds.bounds.max.x;
-        XMinBound = floorBounds.bounds.min.x;
-        ZMaxBound = floorBounds.bounds.max.z;
-        ZMinBound = floorBounds.bounds.min.z;
+        _XMaxBound = floorBounds.bounds.max.x;
+        _XMinBound = floorBounds.bounds.min.x;
+        _ZMaxBound = floorBounds.bounds.max.z;
+        _ZMinBound = floorBounds.bounds.min.z;
     }
 }

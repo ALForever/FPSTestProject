@@ -8,7 +8,7 @@ public class ObjectPoolMono<T> where T : MonoBehaviour
     public bool autoExpand { get; set; }
     public Transform container { get; }
 
-    private List<T> pool;
+    private List<T> _pool;
 
     public ObjectPoolMono(T prefab, int count, Transform container, bool isActiveByDefault = false)
     {
@@ -20,7 +20,7 @@ public class ObjectPoolMono<T> where T : MonoBehaviour
 
     private void CreatePool(int count, bool isActiveByDefault)
     {
-        pool = new List<T>();
+        _pool = new List<T>();
         for (int i = 0; i < count; i++)
         {
             CreateObject(isActiveByDefault);
@@ -31,14 +31,14 @@ public class ObjectPoolMono<T> where T : MonoBehaviour
     {
         T createdObject = UnityEngine.Object.Instantiate(prefab, container);
         createdObject.gameObject.SetActive(isActiveByDefault);
-        pool.Add(createdObject);
+        _pool.Add(createdObject);
         return createdObject;
     }
 
     public bool HasFreeElement(out T element)
     {
-        if (pool != null)
-            foreach (T mono in pool)
+        if (_pool != null)
+            foreach (T mono in _pool)
             {
                 if (!mono.gameObject.activeInHierarchy)
                 {
@@ -61,10 +61,10 @@ public class ObjectPoolMono<T> where T : MonoBehaviour
     }
     public List<T> GetAllActiveElemets()
     {
-        if(pool != null)
+        if(_pool != null)
         {
             List<T> activeElements = new List<T>();
-            foreach( T mono in pool)
+            foreach( T mono in _pool)
             {
                 if (mono.gameObject.activeInHierarchy)
                 {
